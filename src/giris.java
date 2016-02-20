@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.sql.*;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -24,6 +25,7 @@ public class giris extends javax.swing.JFrame {
         kid = new javax.swing.JLabel();
         giris_buton = new javax.swing.JButton();
         pw_tf = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kullanıcı Girişi");
@@ -32,7 +34,7 @@ public class giris extends javax.swing.JFrame {
         setLocation(new java.awt.Point(200, 200));
         setLocationByPlatform(true);
         setResizable(false);
-        setSize(new java.awt.Dimension(0, 0));
+        setSize(new java.awt.Dimension(30, 30));
 
         pw.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         pw.setText("Şifre :");
@@ -64,12 +66,16 @@ public class giris extends javax.swing.JFrame {
         pw_tf.setBackground(new java.awt.Color(204, 255, 255));
         pw_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jLabel2.setIcon(icon.login);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel2)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -84,24 +90,27 @@ public class giris extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pw_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(kid_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(kid)
-                    .addComponent(kid_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pw_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pw))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(kid)
+                            .addComponent(kid_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pw_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pw)))
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giris_buton)
                     .addComponent(kayit_buton))
-                .addGap(47, 47, 47))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,14 +136,14 @@ public class giris extends javax.swing.JFrame {
                         this.dispose();
                     } else {
                         String msg = "Girdiğiniz şifre yanlış. Lütfen tekrar deneyiniz.";
-                        JOptionPane.showMessageDialog(new JFrame(), msg, "Hatalı Şifre", JOptionPane.OK_OPTION);
+                        JOptionPane.showMessageDialog(new JFrame(), msg, "Hatalı Şifre", JOptionPane.WARNING_MESSAGE,icon.warning);
                     }
 
                 }
                 Veritabani.close_stmt();
             } else {
-                JOptionPane.showMessageDialog(null, "Girdiğiniz kullanıcı adına ait kayıt bulunamadı. Lütfen tekrar deneyiniz.");
-
+                String msg= "Girdiğiniz kullanıcı adına ait kayıt bulunamadı";
+                JOptionPane.showMessageDialog(new JFrame(),msg,"Hata",JOptionPane.WARNING_MESSAGE,icon.warning);
             }
 
         } catch (SQLException e) {
@@ -178,6 +187,7 @@ public class giris extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton giris_buton;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton kayit_buton;
     private javax.swing.JLabel kid;
     private javax.swing.JTextField kid_tf;
