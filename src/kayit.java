@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.sql.*;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 public class kayit extends javax.swing.JFrame {
@@ -50,7 +49,7 @@ public class kayit extends javax.swing.JFrame {
         pw_tf.setBackground(new java.awt.Color(204, 255, 255));
         pw_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jLabel1.setIcon(icon.add);
+        jLabel1.setIcon(icon.getADD());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,18 +94,18 @@ public class kayit extends javax.swing.JFrame {
 
     private void onay_butonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onay_butonActionPerformed
         try{
-            Veritabani.query="INSERT INTO OYUNCU"+"(kid,sifre) "+"VALUES(?,?)"; 
+            Veritabani.setQuery("INSERT INTO OYUNCU"+"(kid,sifre) "+"VALUES(?,?)");
             Veritabani.db_prpstmt();
-            Veritabani.prpstmt.setString(1,kid_tf.getText());
-            Veritabani.prpstmt.setString(2,String.valueOf(pw_tf.getPassword()));
-            Veritabani.prpstmt.executeUpdate();            
+            Veritabani.getPrpstmt().setString(1,kid_tf.getText());
+            Veritabani.getPrpstmt().setString(2,String.valueOf(pw_tf.getPassword()));
+            Veritabani.getPrpstmt().executeUpdate();            
             Veritabani.close_prp_stmt();
         }
         catch(SQLException e){
             
             if (e.getSQLState().startsWith("23")) {
                 String msg= "Bu kullanıcı adı kullanımda. Lütfen başka bir kullanıcı adı deneyiniz";
-                JOptionPane.showMessageDialog(new JFrame(),msg,"Hata",JOptionPane.WARNING_MESSAGE,icon.warning);             
+                JOptionPane.showMessageDialog(new JFrame(),msg,"Hata",JOptionPane.WARNING_MESSAGE,icon.getWARNING());             
             }
             else{
                 System.out.println("Error : "+e);
@@ -114,7 +113,7 @@ public class kayit extends javax.swing.JFrame {
             return;
         }
         String msg= "Kaydınız başarıyla tamamlanmıştır. Lütfen giriş yapınız.";
-        JOptionPane.showMessageDialog(new JFrame(), msg, "Kaydınız Başarılı", JOptionPane.INFORMATION_MESSAGE,icon.success);
+        JOptionPane.showMessageDialog(new JFrame(), msg, "Kaydınız Başarılı", JOptionPane.INFORMATION_MESSAGE,icon.getSCORE());
         
         grs.setVisible(true);
         this.dispose();

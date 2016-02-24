@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.sql.*;
 import javax.swing.ImageIcon;
@@ -66,7 +65,7 @@ public class giris extends javax.swing.JFrame {
         pw_tf.setBackground(new java.awt.Color(204, 255, 255));
         pw_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jLabel2.setIcon(icon.login);
+        jLabel2.setIcon(icon.getLOGIN());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,7 +109,7 @@ public class giris extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(giris_buton)
                     .addComponent(kayit_buton))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,26 +123,26 @@ public class giris extends javax.swing.JFrame {
 
     private void giris_butonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giris_butonActionPerformed
         try {
-            Veritabani.query = "SELECT id,sifre FROM OYUNCU WHERE kid='" + kid_tf.getText() + "'";
+            Veritabani.setQuery("SELECT id,sifre FROM OYUNCU WHERE kid='" + kid_tf.getText() + "'");  
             Veritabani.db_stmt();
-            if (Veritabani.rs.isBeforeFirst()) {
-                while (Veritabani.rs.next()) {
-                    String sifre = Veritabani.rs.getString("sifre");
+            if (Veritabani.getRs().isBeforeFirst()) {
+                while (Veritabani.getRs().next()) {
+                    String sifre = Veritabani.getRs().getString("sifre");
                     if (String.valueOf(pw_tf.getPassword()).equals(sifre)) {
-                        store.setId(Veritabani.rs.getInt("id"));
+                        store.setId(Veritabani.getRs().getInt("id"));
                         hm = new home(this);
                         hm.setVisible(true);
                         this.dispose();
                     } else {
                         String msg = "Girdiğiniz şifre yanlış. Lütfen tekrar deneyiniz.";
-                        JOptionPane.showMessageDialog(new JFrame(), msg, "Hatalı Şifre", JOptionPane.WARNING_MESSAGE,icon.warning);
+                        JOptionPane.showMessageDialog(new JFrame(), msg, "Hatalı Şifre", JOptionPane.WARNING_MESSAGE,icon.getWARNING());
                     }
 
                 }
                 Veritabani.close_stmt();
             } else {
                 String msg= "Girdiğiniz kullanıcı adına ait kayıt bulunamadı";
-                JOptionPane.showMessageDialog(new JFrame(),msg,"Hata",JOptionPane.WARNING_MESSAGE,icon.warning);
+                JOptionPane.showMessageDialog(new JFrame(),msg,"Hata",JOptionPane.WARNING_MESSAGE,icon.getWARNING());
             }
 
         } catch (SQLException e) {

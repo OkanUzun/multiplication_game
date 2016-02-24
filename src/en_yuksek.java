@@ -13,9 +13,9 @@ public class en_yuksek extends javax.swing.JFrame {
        
     private void en_yuksek_hesap(){
 
-            Veritabani.query = "SELECT OYUNCU.kid AS Kullanici_Adi,SKOR.skor AS Skoru from OYUNCU,SKOR WHERE SKOR.o_id=OYUNCU.id ORDER BY SKOR.skor DESC";
+            Veritabani.setQuery("SELECT OYUNCU.kid AS Kullanici_Adi,MAX(SKOR.skor) AS Skor from OYUNCU,SKOR WHERE SKOR.o_id=OYUNCU.id GROUP BY(OYUNCU.kid) ORDER BY SKOR.skor DESC");
             Veritabani.db_stmt();
-            tablo.setModel(DbUtils.resultSetToTableModel(Veritabani.rs));
+            tablo.setModel(DbUtils.resultSetToTableModel(Veritabani.getRs()));
             Veritabani.close_stmt();
         
     }

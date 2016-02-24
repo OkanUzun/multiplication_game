@@ -2,9 +2,31 @@
 import javax.swing.ImageIcon;
 
 public class icon {
-    public final static ImageIcon success = new ImageIcon("dist\\lib\\Images\\success.png");
-    public final static ImageIcon warning = new ImageIcon("dist\\lib\\Images\\warning.png");
-    public final static ImageIcon login = new ImageIcon("dist\\lib\\Images\\login.png");
-    public final static ImageIcon add = new ImageIcon("dist\\lib\\Images\\add.png");
-    public final static ImageIcon score = new ImageIcon("dist\\lib\\Images\\score.png");
+    private static final ImageIcon SUCCESS = new ImageIcon("oyun_images\\success.png");
+    private static final ImageIcon WARNING = new ImageIcon("oyun_images\\warning.png");
+    private static final ImageIcon LOGIN = new ImageIcon("oyun_images\\login.png");
+    private static final ImageIcon ADD = new ImageIcon("oyun_images\\add.png");
+    private static final ImageIcon SCORE = new ImageIcon("oyun_images\\score.png");
+
+    public static ImageIcon getSUCCESS() {
+        return SUCCESS;
+    }
+
+    public static ImageIcon getWARNING() {
+        return WARNING;
+    }
+
+    public static ImageIcon getLOGIN() {
+        return LOGIN;
+    }
+
+    public static ImageIcon getADD() {
+        return ADD;
+    }
+
+    public static ImageIcon getSCORE() {
+        return SCORE;
+    }
+    
+    
 }

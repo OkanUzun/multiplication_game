@@ -13,9 +13,9 @@ public class skor extends javax.swing.JFrame {
     }
     
     private void skorlari_al(){
-        Veritabani.query="SELECT skor AS Skorlar FROM SKOR WHERE O_id='"+store.getId()+"'";         
+        Veritabani.setQuery("SELECT skor AS Skorlar FROM SKOR WHERE O_id='"+store.getId()+"'");       
         Veritabani.db_stmt();
-        tablo.setModel(DbUtils.resultSetToTableModel(Veritabani.rs));
+        tablo.setModel(DbUtils.resultSetToTableModel(Veritabani.getRs()));
         Veritabani.close_stmt();
     }
 

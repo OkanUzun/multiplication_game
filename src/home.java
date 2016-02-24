@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -196,8 +195,7 @@ public class home extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         panel.setVisible(true);
         String soru;
-        soru_no = 1;
-        
+        soru_no = 1;       
         Random rand = new Random();
         a = rand.nextInt(8) + 3;
         b = rand.nextInt(8) + 3;
@@ -217,6 +215,7 @@ public class home extends javax.swing.JFrame {
         i = 0;
         panel.getRootPane().setDefaultButton(yanitla);
         puan = 0;
+        kalan_lb.setText("");
     }//GEN-LAST:event_startActionPerformed
     
     TimerTask task = new TimerTask() {
@@ -253,9 +252,7 @@ public class home extends javax.swing.JFrame {
             cevap_tf.setEnabled(false);
             yanitla.setEnabled(false);
             kalan_lb.setVisible(false);
-            sure = false;
-            
-            
+            sure = false;           
         } else {
             puan += 5;
             soru_sonuc_lbl.setText("Cevap Doğru");
@@ -273,8 +270,7 @@ public class home extends javax.swing.JFrame {
     }//GEN-LAST:event_yanitlaActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        if (soru_no < 5) {
-            seconds = 6;
+        if (soru_no < 5) {           
             i = 0;
             sure = true;
             cevap_tf.setText("");
@@ -293,17 +289,18 @@ public class home extends javax.swing.JFrame {
             next.setEnabled(false);
             next.setVisible(false);
             soru_sonuc_lbl.setEnabled(false);
-            soru_sonuc_lbl.setVisible(false);           
+            soru_sonuc_lbl.setVisible(false); 
+            kalan_lb.setText("");
             kalan_lb.setVisible(true);
             panel.getRootPane().setDefaultButton(yanitla);
             
         } else {
             try{
-            Veritabani.query="INSERT INTO SKOR"+"(skor,o_id) "+"VALUES(?,?)";
+            Veritabani.setQuery("INSERT INTO SKOR"+"(skor,o_id) "+"VALUES(?,?)");
             Veritabani.db_prpstmt();
-            Veritabani.prpstmt.setInt(1, puan);
-            Veritabani.prpstmt.setInt(2, store.getId());
-            Veritabani.prpstmt.executeUpdate();
+            Veritabani.getPrpstmt().setInt(1, puan);
+            Veritabani.getPrpstmt().setInt(2, store.getId());
+            Veritabani.getPrpstmt().executeUpdate();
             Veritabani.close_prp_stmt();
                      
         }
@@ -312,9 +309,8 @@ public class home extends javax.swing.JFrame {
         }
             
             panel.setVisible(false);
-            final ImageIcon icon = new ImageIcon("C:\\Users\\Okan\\Desktop\\score.png");
             String msg= "Oyun bitti. Puanınız : " + puan;
-            JOptionPane.showMessageDialog(new JFrame(), msg, "Sonucunuz", JOptionPane.INFORMATION_MESSAGE,icon);
+            JOptionPane.showMessageDialog(new JFrame(), msg, "Sonucunuz", JOptionPane.INFORMATION_MESSAGE,icon.getSCORE());
             
         }
         
