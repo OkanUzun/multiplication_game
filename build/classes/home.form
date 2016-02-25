@@ -33,7 +33,7 @@
                       <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="81" pref="81" max="-2" attributes="0"/>
-                      <Component id="start" min="-2" max="-2" attributes="0"/>
+                      <Component id="new_game" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
-                      <Component id="gecmis" min="-2" max="-2" attributes="0"/>
+                      <Component id="last_games" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
@@ -57,12 +57,12 @@
                       <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="start" min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="new_game" min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
               <Component id="panel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-              <Component id="gecmis" min="-2" max="-2" attributes="0"/>
+              <Component id="last_games" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,7 +81,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="cevap_tf" min="-2" pref="136" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="yanitla" min="-2" max="-2" attributes="0"/>
+                          <Component id="reply" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="62" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -116,7 +116,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cevap_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cevap_tf" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="yanitla" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="reply" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -186,7 +186,7 @@
             <Property name="text" type="java.lang.String" value="Do&#x11f;rumu Yanl&#x131;&#x15f;m&#x131;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="yanitla">
+        <Component class="javax.swing.JButton" name="reply">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="cc" type="rgb"/>
@@ -197,7 +197,7 @@
             <Property name="text" type="java.lang.String" value="Yan&#x131;tla"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yanitlaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="replyActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="kalan_lb">
@@ -217,7 +217,7 @@
         <Property name="text" type="java.lang.String" value="&#xc7;ARPMA OYUNU"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="start">
+    <Component class="javax.swing.JButton" name="new_game">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="cc" type="rgb"/>
@@ -228,10 +228,10 @@
         <Property name="text" type="java.lang.String" value="YEN&#x130; OYUNA BA&#x15e;LA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="new_gameActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="gecmis">
+    <Component class="javax.swing.JButton" name="last_games">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="cc" type="rgb"/>
@@ -242,7 +242,7 @@
         <Property name="text" type="java.lang.String" value="Ge&#xe7;mi&#x15f; Oyunlar&#x131;m"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gecmisActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="last_gamesActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

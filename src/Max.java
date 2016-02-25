@@ -1,23 +1,26 @@
+
 import java.awt.Color;
 import net.proteanit.sql.DbUtils;
-public class en_yuksek extends javax.swing.JFrame {
 
-    skor scr;
-    public en_yuksek(skor max) {
+public class Max extends javax.swing.JFrame {
+
+    private Score scr;
+
+    public Max(Score max) {
         initComponents();
         scr = max;
-        en_yuksek_hesap();
-        this.getContentPane().setBackground(Color.GREEN);
-        
-    }
-       
-    private void en_yuksek_hesap(){
+        top_users();
+        this.getContentPane().setBackground(Color.ORANGE);
 
-            Veritabani.setQuery("SELECT OYUNCU.kid AS Kullanici_Adi,MAX(SKOR.skor) AS Skor from OYUNCU,SKOR WHERE SKOR.o_id=OYUNCU.id GROUP BY(OYUNCU.kid) ORDER BY SKOR.skor DESC");
-            Veritabani.db_stmt();
-            tablo.setModel(DbUtils.resultSetToTableModel(Veritabani.getRs()));
-            Veritabani.close_stmt();
-        
+    }
+
+    private void top_users() {
+
+        Database.setQuery("SELECT OYUNCU.kid AS Kullanici_Adi,MAX(SKOR.skor) AS Skor from OYUNCU,SKOR WHERE SKOR.o_id=OYUNCU.id GROUP BY(OYUNCU.id) ORDER BY MAX(Skor) DESC");
+        Database.db_stmt();
+        table.setModel(DbUtils.resultSetToTableModel(Database.getRs()));
+        Database.close_stmt();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -25,16 +28,16 @@ public class en_yuksek extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablo = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(200, 200));
         setResizable(false);
 
-        tablo.setBackground(new java.awt.Color(204, 255, 255));
-        tablo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        tablo.setModel(new javax.swing.table.DefaultTableModel(
+        table.setBackground(new java.awt.Color(204, 255, 255));
+        table.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -42,7 +45,7 @@ public class en_yuksek extends javax.swing.JFrame {
                 "Kullanıcı", "Skor"
             }
         ));
-        jScrollPane1.setViewportView(tablo);
+        jScrollPane1.setViewportView(table);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("En yüksek skorlar");
@@ -88,14 +91,15 @@ public class en_yuksek extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(en_yuksek.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Max.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(en_yuksek.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Max.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(en_yuksek.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Max.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(en_yuksek.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Max.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -110,8 +114,6 @@ public class en_yuksek extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablo;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
-
-

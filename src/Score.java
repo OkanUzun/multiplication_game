@@ -1,22 +1,24 @@
+
 import java.awt.Color;
 import net.proteanit.sql.DbUtils;
 
-public class skor extends javax.swing.JFrame {
-     
-    home hm;
-    en_yuksek max;
-    public skor(home h) {
+public class Score extends javax.swing.JFrame {
+
+    private Home hm;
+    private Max max;
+
+    public Score(Home h) {
         initComponents();
         hm = h;
-        skorlari_al();
-        this.getContentPane().setBackground(Color.GREEN);
+        get_scores();
+        this.getContentPane().setBackground(Color.ORANGE);
     }
-    
-    private void skorlari_al(){
-        Veritabani.setQuery("SELECT skor AS Skorlar FROM SKOR WHERE O_id='"+store.getId()+"'");       
-        Veritabani.db_stmt();
-        tablo.setModel(DbUtils.resultSetToTableModel(Veritabani.getRs()));
-        Veritabani.close_stmt();
+
+    private void get_scores() {
+        Database.setQuery("SELECT skor AS Skorlar FROM SKOR WHERE O_id='" + Store.getId() + "'");
+        Database.db_stmt();
+        table.setModel(DbUtils.resultSetToTableModel(Database.getRs()));
+        Database.close_stmt();
     }
 
     /**
@@ -29,18 +31,18 @@ public class skor extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablo = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        enyuksek = new javax.swing.JButton();
+        max_scores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Geçmiş Oyunlar");
         setLocation(new java.awt.Point(200, 200));
         setResizable(false);
 
-        tablo.setBackground(new java.awt.Color(204, 255, 255));
-        tablo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        tablo.setModel(new javax.swing.table.DefaultTableModel(
+        table.setBackground(new java.awt.Color(204, 255, 255));
+        table.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -48,17 +50,17 @@ public class skor extends javax.swing.JFrame {
                 "Skor"
             }
         ));
-        jScrollPane1.setViewportView(tablo);
+        jScrollPane1.setViewportView(table);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Önceki Oyun Skorlarınız");
 
-        enyuksek.setBackground(new java.awt.Color(204, 255, 255));
-        enyuksek.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        enyuksek.setText("En Yüksek Skorlar");
-        enyuksek.addActionListener(new java.awt.event.ActionListener() {
+        max_scores.setBackground(new java.awt.Color(204, 255, 255));
+        max_scores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        max_scores.setText("En Yüksek Skorlar");
+        max_scores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enyuksekActionPerformed(evt);
+                max_scoresActionPerformed(evt);
             }
         });
 
@@ -67,19 +69,15 @@ public class skor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(enyuksek)
-                        .addGap(0, 73, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(max_scores)
+                            .addComponent(jLabel1))
+                        .addGap(0, 13, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,17 +87,17 @@ public class skor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(enyuksek)
+                .addComponent(max_scores)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void enyuksekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enyuksekActionPerformed
-        max = new en_yuksek(this);
+
+    private void max_scoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_max_scoresActionPerformed
+        max = new Max(this);
         max.setVisible(true);
-    }//GEN-LAST:event_enyuksekActionPerformed
+    }//GEN-LAST:event_max_scoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,14 +116,15 @@ public class skor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(skor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Score.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(skor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Score.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(skor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Score.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(skor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Score.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -138,9 +137,9 @@ public class skor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton enyuksek;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablo;
+    private javax.swing.JButton max_scores;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

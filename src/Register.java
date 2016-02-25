@@ -1,16 +1,19 @@
+
 import java.awt.Color;
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-public class kayit extends javax.swing.JFrame {
 
-    giris grs;
-    public kayit(giris h) {
+public class Register extends javax.swing.JFrame {
+
+    public Register(Login h) {
         initComponents();
-        grs=h;
-        this.getContentPane().setBackground(Color.GREEN);
+        lgn = h;
+        this.getContentPane().setBackground(Color.ORANGE);
     }
 
+    private Login lgn;
+    private String msg;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -19,7 +22,7 @@ public class kayit extends javax.swing.JFrame {
         kid = new javax.swing.JLabel();
         pw = new javax.swing.JLabel();
         kid_tf = new javax.swing.JTextField();
-        onay_buton = new javax.swing.JButton();
+        confirm = new javax.swing.JButton();
         pw_tf = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
@@ -37,19 +40,19 @@ public class kayit extends javax.swing.JFrame {
         kid_tf.setBackground(new java.awt.Color(204, 255, 255));
         kid_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        onay_buton.setBackground(new java.awt.Color(204, 255, 255));
-        onay_buton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        onay_buton.setText("Onayla");
-        onay_buton.addActionListener(new java.awt.event.ActionListener() {
+        confirm.setBackground(new java.awt.Color(204, 255, 255));
+        confirm.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        confirm.setText("Onayla");
+        confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onay_butonActionPerformed(evt);
+                confirmActionPerformed(evt);
             }
         });
 
         pw_tf.setBackground(new java.awt.Color(204, 255, 255));
         pw_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jLabel1.setIcon(icon.getADD());
+        jLabel1.setIcon(Icon.getADD());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,7 +67,7 @@ public class kayit extends javax.swing.JFrame {
                     .addComponent(pw))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(onay_buton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(kid_tf)
                         .addComponent(pw_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -85,40 +88,38 @@ public class kayit extends javax.swing.JFrame {
                             .addComponent(pw)
                             .addComponent(pw_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(onay_buton)))
+                        .addComponent(confirm)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void onay_butonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onay_butonActionPerformed
-        try{
-            Veritabani.setQuery("INSERT INTO OYUNCU"+"(kid,sifre) "+"VALUES(?,?)");
-            Veritabani.db_prpstmt();
-            Veritabani.getPrpstmt().setString(1,kid_tf.getText());
-            Veritabani.getPrpstmt().setString(2,String.valueOf(pw_tf.getPassword()));
-            Veritabani.getPrpstmt().executeUpdate();            
-            Veritabani.close_prp_stmt();
-        }
-        catch(SQLException e){
-            
+    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
+        try {
+            Database.setQuery("INSERT INTO OYUNCU" + "(kid,sifre) " + "VALUES(?,?)");
+            Database.db_prpstmt();
+            Database.getPrpstmt().setString(1, kid_tf.getText());
+            Database.getPrpstmt().setString(2, String.valueOf(pw_tf.getPassword()));
+            Database.getPrpstmt().executeUpdate();
+            Database.close_prp_stmt();
+        } catch (SQLException e) {
+
             if (e.getSQLState().startsWith("23")) {
-                String msg= "Bu kullanıcı adı kullanımda. Lütfen başka bir kullanıcı adı deneyiniz";
-                JOptionPane.showMessageDialog(new JFrame(),msg,"Hata",JOptionPane.WARNING_MESSAGE,icon.getWARNING());             
-            }
-            else{
-                System.out.println("Error : "+e);
+                msg = "Bu kullanıcı adı kullanımda. Lütfen başka bir kullanıcı adı deneyiniz";
+                JOptionPane.showMessageDialog(new JFrame(), msg, "Hata", JOptionPane.WARNING_MESSAGE, Icon.getWARNING());
+            } else {
+                System.out.println("Error : " + e);
             }
             return;
         }
-        String msg= "Kaydınız başarıyla tamamlanmıştır. Lütfen giriş yapınız.";
-        JOptionPane.showMessageDialog(new JFrame(), msg, "Kaydınız Başarılı", JOptionPane.INFORMATION_MESSAGE,icon.getSCORE());
-        
-        grs.setVisible(true);
+        msg = "Kaydınız başarıyla tamamlanmıştır. Lütfen giriş yapınız.";
+        JOptionPane.showMessageDialog(new JFrame(), msg, "Kaydınız Başarılı", JOptionPane.INFORMATION_MESSAGE, Icon.getSCORE());
+
+        lgn.setVisible(true);
         this.dispose();
 
-    }//GEN-LAST:event_onay_butonActionPerformed
+    }//GEN-LAST:event_confirmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,14 +138,15 @@ public class kayit extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(kayit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(kayit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(kayit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(kayit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -157,10 +159,10 @@ public class kayit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton confirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel kid;
     private javax.swing.JTextField kid_tf;
-    private javax.swing.JButton onay_buton;
     private javax.swing.JLabel pw;
     private javax.swing.JPasswordField pw_tf;
     // End of variables declaration//GEN-END:variables

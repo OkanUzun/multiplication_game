@@ -38,7 +38,7 @@
               </Group>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="onay_buton" min="-2" pref="79" max="-2" attributes="0"/>
+                  <Component id="confirm" min="-2" pref="79" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="kid_tf" max="32767" attributes="0"/>
                       <Component id="pw_tf" min="-2" pref="116" max="-2" attributes="0"/>
@@ -65,7 +65,7 @@
                           <Component id="pw_tf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="onay_buton" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirm" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="43" max="32767" attributes="0"/>
@@ -100,7 +100,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="onay_buton">
+    <Component class="javax.swing.JButton" name="confirm">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="cc" type="rgb"/>
@@ -111,7 +111,7 @@
         <Property name="text" type="java.lang.String" value="Onayla"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onay_butonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="pw_tf">
@@ -127,7 +127,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="icon.getADD()" type="code"/>
+          <Connection code="Icon.getADD()" type="code"/>
         </Property>
       </Properties>
     </Component>
