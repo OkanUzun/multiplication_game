@@ -1,7 +1,8 @@
 
 import javax.swing.ImageIcon;
 
-public class icon {
+public class Icon {
+
     private static final ImageIcon SUCCESS = new ImageIcon("oyun_images\\success.png");
     private static final ImageIcon WARNING = new ImageIcon("oyun_images\\warning.png");
     private static final ImageIcon LOGIN = new ImageIcon("oyun_images\\login.png");
@@ -27,6 +28,5 @@ public class icon {
     public static ImageIcon getSCORE() {
         return SCORE;
     }
-    
-    
+
 }
