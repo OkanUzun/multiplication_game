@@ -1,25 +1,24 @@
 
-import java.awt.Color;
 import net.proteanit.sql.DbUtils;
 
 public class Max extends javax.swing.JFrame {
 
-    private Score scr;
+    private static Score score;
 
     public Max(Score max) {
         initComponents();
-        scr = max;
+        score = max;
         top_users();
-        this.getContentPane().setBackground(Color.ORANGE);
+        //this.getContentPane().setBackground(Color.ORANGE);
 
     }
 
     private void top_users() {
 
         Database.setQuery("SELECT OYUNCU.kid AS Kullanici_Adi,MAX(SKOR.skor) AS Skor from OYUNCU,SKOR WHERE SKOR.o_id=OYUNCU.id GROUP BY(OYUNCU.id) ORDER BY MAX(Skor) DESC");
-        Database.db_stmt();
+        Database.db_prpstmt_query();
         table.setModel(DbUtils.resultSetToTableModel(Database.getRs()));
-        Database.close_stmt();
+        Database.close_prp_stmt();
 
     }
 

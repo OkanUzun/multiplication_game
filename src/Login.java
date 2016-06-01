@@ -1,5 +1,4 @@
 
-import java.awt.Color;
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -8,11 +7,9 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        this.getContentPane().setBackground(Color.ORANGE);
+        //this.getContentPane().setBackground(Color.ORANGE);
     }
 
-    private Register rgstr;
-    private Home hm;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -20,9 +17,9 @@ public class Login extends javax.swing.JFrame {
 
         pw = new javax.swing.JLabel();
         kid_tf = new javax.swing.JTextField();
-        register = new javax.swing.JButton();
+        register_button = new javax.swing.JButton();
         kid = new javax.swing.JLabel();
-        login = new javax.swing.JButton();
+        login_button = new javax.swing.JButton();
         pw_tf = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
 
@@ -38,31 +35,27 @@ public class Login extends javax.swing.JFrame {
         pw.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         pw.setText("Şifre :");
 
-        kid_tf.setBackground(new java.awt.Color(204, 255, 255));
         kid_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        register.setBackground(new java.awt.Color(204, 255, 255));
-        register.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        register.setText("Kayıt Ol");
-        register.addActionListener(new java.awt.event.ActionListener() {
+        register_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        register_button.setText("Kayıt Ol");
+        register_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerActionPerformed(evt);
+                register_buttonActionPerformed(evt);
             }
         });
 
         kid.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         kid.setText("Kullanıcı Adı :");
 
-        login.setBackground(new java.awt.Color(204, 255, 255));
-        login.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        login.setText("Giriş Yap");
-        login.addActionListener(new java.awt.event.ActionListener() {
+        login_button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        login_button.setText("Giriş Yap");
+        login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
+                login_buttonActionPerformed(evt);
             }
         });
 
-        pw_tf.setBackground(new java.awt.Color(204, 255, 255));
         pw_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel2.setIcon(Icon.getLOGIN());
@@ -78,9 +71,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(register_button, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(kid)
@@ -107,31 +100,29 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(login)
-                    .addComponent(register))
+                    .addComponent(login_button)
+                    .addComponent(register_button))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        rgstr = new Register(this);
-        rgstr.setVisible(true);
+    private void register_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_buttonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_registerActionPerformed
+    }//GEN-LAST:event_register_buttonActionPerformed
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+    private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
         try {
             Database.setQuery("SELECT id,sifre FROM OYUNCU WHERE kid='" + kid_tf.getText() + "'");
-            Database.db_stmt();
+            Database.db_prpstmt_query();
             if (Database.getRs().isBeforeFirst()) {
                 while (Database.getRs().next()) {
                     String sifre = Database.getRs().getString("sifre");
                     if (String.valueOf(pw_tf.getPassword()).equals(sifre)) {
                         Store.setId(Database.getRs().getInt("id"));
-                        hm = new Home(this);
-                        hm.setVisible(true);
+                        home = new Home(this);
+                        home.setVisible(true);
                         this.dispose();
                     } else {
                         String msg = "Girdiğiniz şifre yanlış. Lütfen tekrar deneyiniz.";
@@ -139,7 +130,7 @@ public class Login extends javax.swing.JFrame {
                     }
 
                 }
-                Database.close_stmt();
+                Database.close_prp_stmt();
             } else {
                 String msg = "Girdiğiniz kullanıcı adına ait kayıt bulunamadı";
                 JOptionPane.showMessageDialog(new JFrame(), msg, "Hata", JOptionPane.WARNING_MESSAGE, Icon.getWARNING());
@@ -149,7 +140,7 @@ public class Login extends javax.swing.JFrame {
             System.out.println("Error : " + e);
         }
 
-    }//GEN-LAST:event_loginActionPerformed
+    }//GEN-LAST:event_login_buttonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -191,9 +182,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel kid;
     private javax.swing.JTextField kid_tf;
-    private javax.swing.JButton login;
+    private javax.swing.JButton login_button;
     private javax.swing.JLabel pw;
     private javax.swing.JPasswordField pw_tf;
-    private javax.swing.JButton register;
+    private javax.swing.JButton register_button;
     // End of variables declaration//GEN-END:variables
 }

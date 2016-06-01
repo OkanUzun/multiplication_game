@@ -1,5 +1,4 @@
 
-import java.awt.Color;
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -8,12 +7,12 @@ public class Register extends javax.swing.JFrame {
 
     public Register(Login h) {
         initComponents();
-        lgn = h;
-        this.getContentPane().setBackground(Color.ORANGE);
+        login = h;
+        //this.getContentPane().setBackground(Color.ORANGE);
     }
 
-    private Login lgn;
-    private String msg;
+    private static Login login;
+    private static String message;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,10 +36,8 @@ public class Register extends javax.swing.JFrame {
         pw.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         pw.setText("Şifre");
 
-        kid_tf.setBackground(new java.awt.Color(204, 255, 255));
         kid_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        confirm.setBackground(new java.awt.Color(204, 255, 255));
         confirm.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         confirm.setText("Onayla");
         confirm.addActionListener(new java.awt.event.ActionListener() {
@@ -49,7 +46,6 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        pw_tf.setBackground(new java.awt.Color(204, 255, 255));
         pw_tf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel1.setIcon(Icon.getADD());
@@ -98,7 +94,7 @@ public class Register extends javax.swing.JFrame {
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         try {
             Database.setQuery("INSERT INTO OYUNCU" + "(kid,sifre) " + "VALUES(?,?)");
-            Database.db_prpstmt();
+            Database.db_prpstmt_update();
             Database.getPrpstmt().setString(1, kid_tf.getText());
             Database.getPrpstmt().setString(2, String.valueOf(pw_tf.getPassword()));
             Database.getPrpstmt().executeUpdate();
@@ -106,17 +102,17 @@ public class Register extends javax.swing.JFrame {
         } catch (SQLException e) {
 
             if (e.getSQLState().startsWith("23")) {
-                msg = "Bu kullanıcı adı kullanımda. Lütfen başka bir kullanıcı adı deneyiniz";
-                JOptionPane.showMessageDialog(new JFrame(), msg, "Hata", JOptionPane.WARNING_MESSAGE, Icon.getWARNING());
+                message = "Bu kullanıcı adı kullanımda. Lütfen başka bir kullanıcı adı deneyiniz";
+                JOptionPane.showMessageDialog(new JFrame(), message, "Hata", JOptionPane.WARNING_MESSAGE, Icon.getWARNING());
             } else {
                 System.out.println("Error : " + e);
             }
             return;
         }
-        msg = "Kaydınız başarıyla tamamlanmıştır. Lütfen giriş yapınız.";
-        JOptionPane.showMessageDialog(new JFrame(), msg, "Kaydınız Başarılı", JOptionPane.INFORMATION_MESSAGE, Icon.getSCORE());
+        message = "Kaydınız başarıyla tamamlanmıştır. Lütfen giriş yapınız.";
+        JOptionPane.showMessageDialog(new JFrame(), message, "Kaydınız Başarılı", JOptionPane.INFORMATION_MESSAGE, Icon.getSCORE());
 
-        lgn.setVisible(true);
+        login.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_confirmActionPerformed

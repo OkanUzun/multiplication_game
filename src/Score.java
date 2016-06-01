@@ -1,24 +1,23 @@
 
-import java.awt.Color;
 import net.proteanit.sql.DbUtils;
 
 public class Score extends javax.swing.JFrame {
 
-    private Home hm;
-    private Max max;
+    private static Home home;
+    private static Max max;
 
     public Score(Home h) {
         initComponents();
-        hm = h;
+        home = h;
         get_scores();
-        this.getContentPane().setBackground(Color.ORANGE);
+        //this.getContentPane().setBackground(Color.ORANGE);
     }
 
     private void get_scores() {
         Database.setQuery("SELECT skor AS Skorlar FROM SKOR WHERE O_id='" + Store.getId() + "'");
-        Database.db_stmt();
+        Database.db_prpstmt_query();
         table.setModel(DbUtils.resultSetToTableModel(Database.getRs()));
-        Database.close_stmt();
+        Database.close_prp_stmt();
     }
 
     /**
@@ -40,7 +39,6 @@ public class Score extends javax.swing.JFrame {
         setLocation(new java.awt.Point(200, 200));
         setResizable(false);
 
-        table.setBackground(new java.awt.Color(204, 255, 255));
         table.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -55,7 +53,6 @@ public class Score extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Önceki Oyun Skorlarınız");
 
-        max_scores.setBackground(new java.awt.Color(204, 255, 255));
         max_scores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         max_scores.setText("En Yüksek Skorlar");
         max_scores.addActionListener(new java.awt.event.ActionListener() {
