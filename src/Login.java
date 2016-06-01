@@ -10,6 +10,8 @@ public class Login extends javax.swing.JFrame {
         //this.getContentPane().setBackground(Color.ORANGE);
     }
 
+    private static Register register;
+    private static Home home;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -109,6 +111,8 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void register_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_buttonActionPerformed
+        register = new Register(this);
+        register.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_register_buttonActionPerformed
 
