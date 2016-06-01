@@ -1,5 +1,4 @@
 
-import java.awt.Color;
 import java.sql.*;
 import java.util.Random;
 import java.util.Timer;
@@ -15,13 +14,13 @@ public class Home extends javax.swing.JFrame {
         panel.setVisible(false);
         timer = new Timer();
         timer.scheduleAtFixedRate(task, 0, 1000);
-        lgn = h;
-        this.getContentPane().setBackground(Color.ORANGE);
-        panel.setBackground(Color.ORANGE);
+        login = h;
+        //this.getContentPane().setBackground(Color.ORANGE);
+        //panel.setBackground(Color.ORANGE);
     }
 
-    private Login lgn;
-    private Score scr;
+    private static Login login;
+    private static Score score;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -54,10 +53,8 @@ public class Home extends javax.swing.JFrame {
         cevap_lbl.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
         cevap_lbl.setText("Cevap : ");
 
-        cevap_tf.setBackground(new java.awt.Color(204, 255, 255));
         cevap_tf.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
 
-        next.setBackground(new java.awt.Color(204, 255, 255));
         next.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
         next.setText("Sonraki soru");
         next.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +66,6 @@ public class Home extends javax.swing.JFrame {
         soru_sonuc_lbl.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
         soru_sonuc_lbl.setText("Doğrumu Yanlışmı");
 
-        reply.setBackground(new java.awt.Color(204, 255, 255));
         reply.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
         reply.setText("Yanıtla");
         reply.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +127,6 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel1.setText("ÇARPMA OYUNU");
 
-        new_game.setBackground(new java.awt.Color(204, 255, 255));
         new_game.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
         new_game.setText("YENİ OYUNA BAŞLA");
         new_game.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +135,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        last_games.setBackground(new java.awt.Color(204, 255, 255));
         last_games.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
         last_games.setText("Geçmiş Oyunlarım");
         last_games.addActionListener(new java.awt.event.ActionListener() {
@@ -299,7 +293,7 @@ public class Home extends javax.swing.JFrame {
         } else {
             try {
                 Database.setQuery("INSERT INTO SKOR" + "(skor,o_id) " + "VALUES(?,?)");
-                Database.db_prpstmt();
+                Database.db_prpstmt_update();
                 Database.getPrpstmt().setInt(1, puan);
                 Database.getPrpstmt().setInt(2, Store.getId());
                 Database.getPrpstmt().executeUpdate();
@@ -319,8 +313,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_nextActionPerformed
 
     private void last_gamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_last_gamesActionPerformed
-        scr = new Score(this);
-        scr.setVisible(true);
+        score = new Score(this);
+        score.setVisible(true);
     }//GEN-LAST:event_last_gamesActionPerformed
 
     /**
